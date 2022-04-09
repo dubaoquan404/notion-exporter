@@ -139,8 +139,8 @@ func unzip(input []byte, dir string) error {
 }
 
 func extractFileOrDir(dir string, zipFileReader *zip.File, err error) error {
-	target := path.Join(dir, zipFileReader.Name)
-
+	// target := path.Join(dir, zipFileReader.Name)
+	target := path.Join(dir, strings.Split(zipFileReader.Name, " "))
 	if zipFileReader.FileInfo().IsDir() {
 		return os.MkdirAll(target, zipFileReader.Mode())
 	}
